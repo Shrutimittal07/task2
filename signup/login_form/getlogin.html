@@ -1,0 +1,71 @@
+
+a<html>
+<head>
+<title>Get Request</title>
+<scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></scrip>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+th,table,td{
+	border:1px solid black;
+	border-collapse: collapse;	
+}
+th,td{
+	padding:5px;
+}
+th{
+	height:15px;
+	background-color: grey;
+	color:white;
+}
+tr:hover{background-color: #f5f5f5;}
+
+</style>
+</head>
+
+<body>
+    <br>
+    <br>
+
+       <p>To update the details<a href="updatelogin.html">Click Here</a></p>
+       <p>To delete the details<a href="deletelogin.html">Click Here</a></p>
+
+
+    <center><h2>DATA</h2></center>
+    <center>
+	<table id="table">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Password</th>
+			<th>Username</th>
+			<th>Age</th>
+			<th>Color</th>
+			<th>Gender</th>
+
+		</tr>
+    </table>
+    </center>
+
+    <script>
+    	$(document).ready(function(){
+    		$.getJSON("https://technocracy-task-2.herokuapp.com/people", function(data){
+    			var data1 ='';
+    			$.each(data,function(key,value){
+    				data1 +='<tr>';
+    				data1 +='<td>' + value.name +'</td>';
+    				data1 +='<td>' + value.email +'</td>';
+    				data1 +='<td>' + value.password +'</td>';
+    				data1 +='<td>' + value.username +'</td>';
+    				data1 +='<td>' + value.age +'</td>';
+    				data1 +='<td>' + value.color +'</td>';
+    				data1 +='<td>' + value.gender+'</td>';
+    				data1 +='</tr>';
+    			});
+    			$('#table').append(data1);
+
+    		});
+    	});
+
+</script>
+</body>
+</html>

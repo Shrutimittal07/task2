@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Deleted</title>
+
+<link rel="stylesheet" type="text/css" >
+
+</head>
+
+<body>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+	function getParams(){
+		var idx = document.URL.indexOf('?');
+		var params = new Array();
+		if (idx != -1){
+		var pairs=document.URL.substring(idx+1, document.URL.length).split('&');
+		for (var i=0; i<pairs.length; i++){
+			nameVal = pairs[i].split('=');
+			params[nameVal[0]] = nameVal[1];
+		}
+	}
+    return params;
+}
+
+params = getParams();
+id = unescape(params["id"]);
+email = unescape(params["Email"]);
+password = unescape(params["Password"]);
+
+
+var arr={ email:email, password:password};
+$.ajax({
+	url:'https://technocracy-task-2.herokuapp.com/people/'+id,
+	type:'DELETE',
+	data: JSON.stringify(arr),
+	contentType: 'application/json; charset=utf-8',
+	dataType: 'json',
+	async: true,
+	success: function(msg){ 
+	alert("Done");
+	}
+});
+
+</script>
+</body>
+</html>

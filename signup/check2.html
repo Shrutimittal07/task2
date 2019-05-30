@@ -1,0 +1,28 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>check 2</title>
+</head>
+
+<body>
+<h4 class="result"></h4>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+var arr={name:"khusi", email:"khushi@gmail.com", password:"Khushi@1234", age:"13", color:"black", username:"mittalkhushi", gender:"female"};
+$.ajax({
+	url:'https://technocracy-task-2.herokuapp.com/people',
+	type:'POST',
+	data: JSON.stringify(arr),
+	contentType: 'application/json; charset=utf-8',
+	dataType: 'json',
+	async: true,
+	success: function(msg){ 
+	alert("Done");
+	}
+})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Ouptput</title>
+<style>
+      
+      h1.{
+       color:red;
+      }
+
+</style>
+<link rel="stylesheet" type="text/css" >
+
+
+</head>
+
+<body>
+
+<div class="h1">
+<center>
+<h1>Login Completed</h1>
+</center>
+</div>
+
+<a href="get.html">Click here to get all the details</a>
+<br>
+<br>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+	function getParams(){
+		var idx = document.URL.indexOf('?');
+		var params = new Array();
+		if (idx != -1){
+		var pairs=document.URL.substring(idx+1, document.URL.length).split('&');
+		for (var i=0; i<pairs.length; i++){
+			nameVal = pairs[i].split('=');
+			params[nameVal[0]] = nameVal[1];
+		}
+	}
+    return params;
+}
+
+params = getParams();
+name = unescape(params["Name"]);
+email = unescape(params["Email"]);
+password = unescape(params["Password"]);
+age = unescape(params["Age"]);
+username = unescape(params["Username"]);
+color = unescape(params["Color"]);
+gender = unescape(params["gender"]);
+
+var arr={name:name, email:email, password:password, age:parseInt(age), color:color, gender:gender, username:username };
+$.ajax({
+	url:'https://technocracy-task-2.herokuapp.com/people',
+	type:'POST',
+	data: JSON.stringify(arr),
+	contentType: 'application/json; charset=utf-8',
+	dataType: 'json',
+	async: true,
+	success: function(msg){ 
+	alert("Done");
+	}
+});
+
+
+document.write("Name = " + name +"<br>");
+document.write("Email Id = " + email +"<br>");
+document.write(" Password = " + password +"<br>");
+document.write("Age = " + age +"<br>");
+document.write("Color = " + color +"<br>");
+document.write("Gender = " + gender +"<br>");
+document.write("Username = " + username +"<br>");
+
+</script>
+</body>
+</html>
